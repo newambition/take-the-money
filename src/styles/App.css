@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: transparent; /* Ensure the App div doesn't hide the gradient */
 }
 
 .App-logo {
