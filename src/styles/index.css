@@ -9,7 +9,6 @@
   --neutral-500: #737373; /* For footer text, loading dots */
   --neutral-600: #525252; /* For textarea border, status border (info), scrollbar hover */
   --neutral-700: #303030; /* For card border, separator, chat area border, disabled send button bg, scrollbar thumb */
-  --neutral-800: #262626; /* For stats bar bg, textarea bg, AI message bubble bg, loading AI bubble bg */
   --neutral-900: #1a1b1e; /* For main card bg */
 
   --gradient-1: linear-gradient(
@@ -17,11 +16,6 @@
     rgba(26, 27, 30, 0.95) 0%,
     rgba(40, 41, 44, 0.9) 50%,
     rgba(26, 27, 30, 0.95) 100%
-  );
-  --gradient-2: linear-gradient(
-    135deg,
-    rgba(38, 38, 38, 0.9) 0%,
-    rgba(64, 64, 64, 0.8) 100%
   );
   --gradient-chat-area: linear-gradient(
     135deg,
@@ -105,7 +99,6 @@ body {
     max-height: fit-content;
   }
 }
-
 .main-card {
   width: 100%;
   max-width: none; /* Full width on mobile */
