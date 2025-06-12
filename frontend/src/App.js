@@ -7,6 +7,10 @@ import GameStatusMessage from "./components/Game/GameStatusMessage";
 import PaymentButton from "./components/Game/PaymentButton";
 import InputArea from "./components/Game/InputArea";
 import HeroSection from "./components/Game/HeroSection";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "./components/Auth/LoginButton";
+import LogoutButton from "./components/Auth/LogoutButton";
+import Profile from "./components/Auth/Profile";
 import "./styles/App.css";
 
 // Placeholder data and types (normally from types.ts)
@@ -166,6 +170,7 @@ const ChatMessageBubble = ({ message, onTypingComplete }) => {
 
 // Main game component
 const AIPoolChallengeGame = () => {
+  const { isAuthenticated, isLoading: isAuthLoading } = useAuth0();
   const [prizePool, setPrizePool] = useState(164.5);
   const [userPromptsRemaining, setUserPromptsRemaining] = useState(0); // Start with 0 until payment
   const [currentInput, setCurrentInput] = useState("");
@@ -359,6 +364,7 @@ const AIPoolChallengeGame = () => {
           prizePool={prizePool}
         />
         <hr className="separator" />
+        {isAuthenticated && <Profile />}
         <GameStatusMessage
           gameStatusMessage={gameStatusMessage}
           getStatusMessageClass={getStatusMessageClass}
@@ -371,8 +377,14 @@ const AIPoolChallengeGame = () => {
             handleTypingAnimationComplete={handleTypingAnimationComplete}
             chatAreaRef={chatAreaRef}
           />
+
           {/* Input Area and Payment Button */}
-          {!hasPaidForCurrentSession || userPromptsRemaining === 0 ? (
+
+          {isAuthLoading ? (
+            <div>Loading...</div>
+          ) : !isAuthenticated ? (
+            <LoginButton />
+          ) : !hasPaidForCurrentSession || userPromptsRemaining === 0 ? (
             <PaymentButton
               handlePayment={handlePayment}
               PAYMENT_AMOUNT={PAYMENT_AMOUNT}
@@ -385,9 +397,11 @@ const AIPoolChallengeGame = () => {
               handleSendMessage={handleSendMessage}
               isLoadingAI={isLoadingAI}
               userPromptsRemaining={userPromptsRemaining}
+              isLoggedIn={isAuthenticated}
               hasPaidForCurrentSession={hasPaidForCurrentSession}
             />
           )}
+          {isAuthenticated && <LogoutButton />}
           {/* Footer */}
           <footer className="app-footer">
             <p className="footer-text">

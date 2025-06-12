@@ -1,0 +1,17 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Code Rules:
+
+## Self-documenting coding style:
+
+- **Clear Naming:**
+    Use descriptive variable, function, and class names that clearly indicate their purpose.
+- **Structured Code:**
+    Employ organised code with logical blocks and consistent indentation to improve readability.
+- **Expressive Code:**
+    Write code that is straightforward and easy to follow, minimizing the need for extra explanations.
+- **Comments as Needed:**
+    While the goal is to minimise comments, use them sparingly to clarify complex logic, non-obvious decisions, or the why behind the code. Balance is key

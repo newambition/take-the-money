@@ -8,6 +8,7 @@ const InputArea = ({
   isLoadingAI,
   userPromptsRemaining,
   hasPaidForCurrentSession,
+  isLoggedIn,
 }) => (
   <div className="input-area">
     <textarea
@@ -22,13 +23,16 @@ const InputArea = ({
       placeholder="Type your message to the Prize Pool Guardian..."
       className="chat-textarea"
       rows={1}
-      disabled={isLoadingAI || userPromptsRemaining <= 0}
+      disabled={isLoadingAI || userPromptsRemaining <= 0 || !isLoggedIn}
       aria-label="Chat input message to Astra"
     />
     <button
       onClick={handleSendMessage}
       disabled={
-        isLoadingAI || !currentInput.trim() || userPromptsRemaining <= 0
+        isLoadingAI ||
+        !currentInput.trim() ||
+        userPromptsRemaining <= 0 ||
+        !isLoggedIn
       }
       className="button send-button"
       aria-label="Send message to AI"
